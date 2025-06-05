@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+  font-family: sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* Ліва колонка */
+.sidebar {
+  width: 300px;
+  background-color: #ffffff;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Права колонка */
+.content {
+  flex-grow: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Центрує h1 */
+.content h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}

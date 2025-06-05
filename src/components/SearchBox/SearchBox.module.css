@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-bottom: 32px;
+  gap: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.fild {
+  padding: 4px 8px;
+  border: 1px solid olivedrab;
+  border-radius: 4px;
+}
