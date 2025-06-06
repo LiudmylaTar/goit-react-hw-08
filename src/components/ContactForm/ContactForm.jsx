@@ -1,15 +1,11 @@
 import css from "./ContactForm.module.css";
-import { useId, useState } from "react";
+import { useId } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
 import { ErrorMessage } from "formik";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function ContactForm() {
-  const dispatch = useDispatch();
+export default function ContactForm({ initialValues, onSubmit }) {
   const fieldId = useId();
 
   const formatPhoneNumber = (value) => {
@@ -28,28 +24,15 @@ export default function ContactForm() {
       .max(50, "Maximum 50 characters")
       .required("Number is required"),
   });
-  const handleSubmit = async (values, actions) => {
-    try {
-      const resultAction = await dispatch(addContact(values));
-      if (addContact.fulfilled.match(resultAction)) {
-        toast.success("Contact successfully added!");
-        actions.resetForm();
-      } else {
-        toast.error("Failed to add contact.");
-      }
-    } catch (error) {
-      toast.error("An error occurred.");
-    }
-  };
 
   return (
     <Formik
-      initialValues={{
-        name: "",
-        number: "",
+      initialValues={initialValues}
+      onSubmit={(values, actions) => {
+        return onSubmit(values, actions);
       }}
-      onSubmit={handleSubmit}
       validationSchema={validContactForm}
+      enableReinitialize
     >
       {({ setFieldValue, values }) => (
         <Form className={css.form}>
@@ -77,7 +60,7 @@ export default function ContactForm() {
           <ErrorMessage name="number" component="div" className={css.error} />
 
           <button type="submit" className={css.button}>
-            Add contact
+            {initialValues?.id ? "Update contact" : "Add contact"}
           </button>
         </Form>
       )}

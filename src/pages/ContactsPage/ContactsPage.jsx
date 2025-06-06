@@ -1,6 +1,7 @@
 import ContactForm from "../../components/ContactForm/ContactForm";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import ContactList from "../../components/ContactList/ContactList";
+import ContactWrapper from "../../components/ContactForm/ContactWrapper";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,10 +19,12 @@ export default function ContactPage() {
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
+
   return (
     <div className={css.container}>
       <aside className={css.sidebar}>
-        <ContactForm />
+        <h3>Create New Contact</h3>
+        <ContactWrapper contact={null} />
       </aside>
       <main className={css.content}>
         <h1>Phonebook</h1>

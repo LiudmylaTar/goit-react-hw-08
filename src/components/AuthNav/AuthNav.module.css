@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 4px 8px;
+  font-weight: 600;
+  color: #2a363b;
+}
+
+.active {
+  color: #eb911c;
+}

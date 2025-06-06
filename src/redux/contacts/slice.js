@@ -1,6 +1,11 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 
-import { fetchContacts, deleteContact, addContact } from "./operations";
+import {
+  fetchContacts,
+  deleteContact,
+  addContact,
+  editContact,
+} from "./operations";
 import { act } from "react";
 import { selectNameFilter } from "../filters/slice";
 
@@ -46,6 +51,23 @@ const slice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(addContact.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(editContact.pending, (state, action) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(editContact.fulfilled, (state, action) => {
+        state.loading = false;
+        const index = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (index !== -1) {
+          state.items[index] = action.payload;
+        }
+      })
+      .addCase(editContact.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       }),

@@ -19,13 +19,14 @@ img {
 
 body {
   padding: 10px;
+  max-width: 100vw;
   background: linear-gradient(
     to right,
-    #f5e6ca 0%,
-    #f8f1da 20%,
-    #faf7f1 50%,
-    #f8f1da 80%,
-    #f5e6ca 100%
+    rgba(245, 230, 202, 0.4) 0%,
+    rgba(248, 241, 218, 0.6) 20%,
+    rgba(250, 247, 241, 0.6) 50%,
+    rgba(248, 241, 218, 0.6) 80%,
+    rgba(245, 230, 202, 0.4) 100%
   );
   color: #2c2c2c;
   font-family: "Georgia", serif;
