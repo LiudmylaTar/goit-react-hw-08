@@ -34,8 +34,8 @@ export const addContact = createAsyncThunk(
     try {
       const response = await axios.post("/contacts", contact);
       return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.response);
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response);
     }
   }
 );
@@ -50,8 +50,7 @@ export const editContact = createAsyncThunk(
       setAuthHeader(`Bearer ${token}`);
 
       const res = await axios.patch(`/contacts/${id}`, updatedData);
-      const updated = { ...res.data, id: res.data._id };
-      return updated;
+      return res.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }
